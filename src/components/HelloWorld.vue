@@ -1,130 +1,61 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+  <div class="table-wrap">
+    <table class="base-table">
+      <slot></slot>
+      <tbody>
+        <tr v-for="(item, index) in list" :key="index">
+          <template v-for="(td, tIndex) in item">
+            <td :key="tIndex">
+              {{ td.val }}
+            </td>
+          </template>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
-
 <script>
 export default {
-  name: "HelloWorld",
   props: {
-    msg: String,
+    list: {
+      type: Array,
+    },
+    data: {
+      type: Array,
+    },
   },
+  methods: {},
 };
 </script>
+<style lang="less" scoped>
+table {
+  width: 100%;
+}
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+table td,
+table th {
+  // height: 48px;
+  // font-size: 24px;
+  // line-height: 36px;
+  // padding: 10px;
+  // color: #25262a;
+  // text-align: center;
+  // border: 1px solid #fff;
+  // vertical-align: middle;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+table thead tr {
+  background: #d1e4ef;
+  th {
+    height: 56px;
+  }
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+table tbody tr {
+  background: #e4eef2;
 }
-a {
-  color: #42b983;
+
+table tbody tr:nth-child(2n) {
+  background: #e3eef5;
 }
 </style>
